@@ -3,42 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learning Platform</title>
+<title>My Book Publication</title>
 
 <style>
+
+/* BODY BACKGROUND */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    background: #f4f4f4;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://images.unsplash.com/photo-1512820790803-83ca734da794');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
 }
 
-/* HEADER */
-header {
-    background: #2c3e50;
-    color: white;
-    padding: 15px;
+/* HERO */
+.hero {
     text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero p {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.hero button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #ff6f61;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* SECTION */
 section {
+    background: rgba(255,255,255,0.1);
+    margin: 20px;
     padding: 20px;
-    margin: 15px;
-    background: white;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+/* CHAPTER GRID */
+.chapters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.chapter {
+    background: rgba(255,255,255,0.2);
+    padding: 15px;
     border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.chapter:hover {
+    transform: scale(1.05);
+    background: #ff6f61;
 }
 
 /* BUTTON */
 button {
-    padding: 10px 15px;
-    background: #3498db;
-    color: white;
+    padding: 10px;
     border: none;
     border-radius: 5px;
+    background: #3498db;
+    color: white;
     cursor: pointer;
-}
-button:hover {
-    background: #2980b9;
 }
 
 /* CHATBOT */
@@ -47,16 +88,31 @@ button:hover {
     bottom: 20px;
     right: 20px;
     width: 300px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+    100% {transform: translateY(0);}
+}
+
+#chatHeader {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    background: rgba(0,0,0,0.3);
 }
 
 #messages {
     height: 200px;
     overflow-y: auto;
     padding: 10px;
+    background: white;
+    color: black;
 }
 
 #chatbox input {
@@ -68,12 +124,9 @@ button:hover {
     width: 30%;
 }
 
-/* BOOK CARD */
-.book {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 8px;
+/* PDF HIDDEN */
+#pdfViewer {
+    display: none;
 }
 
 </style>
@@ -81,47 +134,42 @@ button:hover {
 
 <body>
 
-<header>
-<h1>📘 My Learning Platform</h1>
-<p>Explore • Learn • Practice</p>
-</header>
+<!-- HERO -->
+<div class="hero">
+<h1>📘 Discover My Book</h1>
+<p>"A journey of knowledge, crafted for learners and innovators."</p>
 
-<!-- BOOK SECTION -->
-<section>
-<h2>📚 Book Preview</h2>
-
-<iframe src="book.pdf" width="100%" height="400px"></iframe>
-
-<div class="book">
-<h3>Sample Book Title</h3>
-<p>Explore the basics and advanced topics.</p>
-
-<button onclick="payNow()">Get Full Book (₹50)</button>
-
-<a href="mailto:mnishanthi1723@gmail.com?subject=Book Order&body=Hi, I would like to buy your book. Please guide me.">
-<button>Order via Email</button>
-</a>
-
+<button onclick="showPDF()">Preview Book</button>
+<button onclick="payNow()">Get Full Book ₹50</button>
 </div>
+
+<!-- PDF VIEW -->
+<section id="pdfViewer">
+<h2>Book Preview</h2>
+<iframe src="book.pdf" width="100%" height="400px"></iframe>
 </section>
 
 <!-- CHAPTERS -->
 <section>
-<h2>📑 Chapters</h2>
-<ul>
-<li>Chapter 1: Introduction</li>
-<li>Chapter 2: Basics</li>
-<li>Chapter 3: Advanced Concepts</li>
-<li>Chapter 4: Practice Problems</li>
-</ul>
+<h2>📑 Book Contents</h2>
+
+<div class="chapters">
+<div class="chapter">Chapter 1<br>Introduction</div>
+<div class="chapter">Chapter 2<br>Basics</div>
+<div class="chapter">Chapter 3<br>Concepts</div>
+<div class="chapter">Chapter 4<br>Applications</div>
+<div class="chapter">Chapter 5<br>Practice</div>
+<div class="chapter">Chapter 6<br>Advanced</div>
+</div>
+
 </section>
 
-<!-- RECOMMENDATION -->
+<!-- RECOMMEND -->
 <section>
-<h2>🔗 Recommended Books</h2>
+<h2>🔗 Explore More Books</h2>
 
-<button onclick="openSite('https://www.amazon.in')">View on Amazon</button>
-<button onclick="openSite('https://www.flipkart.com')">View on Flipkart</button>
+<button onclick="openSite('https://www.amazon.in')">Amazon</button>
+<button onclick="openSite('https://www.flipkart.com')">Flipkart</button>
 
 </section>
 
@@ -136,34 +184,45 @@ width="100%" height="500px"></iframe>
 
 <!-- CHATBOT -->
 <div id="chatbox">
+
+<div id="chatHeader">
+💬 “Books are a uniquely portable magic.” ✨
+</div>
+
 <div id="messages"></div>
 
 <input type="text" id="userInput" placeholder="Ask something...">
 <button onclick="sendMessage()">Send</button>
+
 </div>
 
 <script>
 
+/* SHOW PDF */
+function showPDF() {
+    document.getElementById("pdfViewer").style.display = "block";
+}
+
 /* CHATBOT */
 function sendMessage() {
     let input = document.getElementById("userInput").value;
-    let msgBox = document.getElementById("messages");
+    let box = document.getElementById("messages");
 
-    msgBox.innerHTML += "<p><b>You:</b> " + input + "</p>";
+    box.innerHTML += "<p><b>You:</b> " + input + "</p>";
 
-    let response = "I didn’t understand.";
+    let reply = "Try asking about books or coding!";
 
-    if (input.toLowerCase().includes("book")) {
-        response = "Scroll up to see the book section 📘";
+    if(input.toLowerCase().includes("book")) {
+        reply = "Click Preview Book above 📘";
     }
-    else if (input.toLowerCase().includes("buy")) {
-        response = "Click 'Get Full Book' and complete payment 💰";
+    else if(input.toLowerCase().includes("buy")) {
+        reply = "Click 'Get Full Book' to proceed 💰";
     }
-    else if (input.toLowerCase().includes("code")) {
-        response = "Use the coding IDE below 💻";
+    else if(input.toLowerCase().includes("code")) {
+        reply = "Scroll down for coding practice 💻";
     }
 
-    msgBox.innerHTML += "<p><b>Bot:</b> " + response + "</p>";
+    box.innerHTML += "<p><b>Bot:</b> " + reply + "</p>";
 }
 
 /* PAYMENT */
@@ -175,7 +234,7 @@ function payNow() {
     }, 4000);
 }
 
-/* EXTERNAL LINKS */
+/* LINKS */
 function openSite(url) {
     window.open(url, "_blank");
 }
