@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Platform</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+/* HEADER */
+header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+/* SECTION */
+section {
+    padding: 20px;
+    margin: 15px;
+    background: white;
+    border-radius: 10px;
+}
+
+/* BUTTON */
+button {
+    padding: 10px 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #2980b9;
+}
+
+/* CHATBOT */
+#chatbox {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#messages {
+    height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#chatbox input {
+    width: 70%;
+    padding: 8px;
+}
+
+#chatbox button {
+    width: 30%;
+}
+
+/* BOOK CARD */
+.book {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📘 My Learning Platform</h1>
+<p>Explore • Learn • Practice</p>
+</header>
+
+<!-- BOOK SECTION -->
+<section>
+<h2>📚 Book Preview</h2>
+
+<iframe src="book.pdf" width="100%" height="400px"></iframe>
+
+<div class="book">
+<h3>Sample Book Title</h3>
+<p>Explore the basics and advanced topics.</p>
+
+<button onclick="payNow()">Get Full Book (₹50)</button>
+
+<a href="mailto:mnishanthi1723@gmail.com?subject=Book Order&body=Hi, I would like to buy your book. Please guide me.">
+<button>Order via Email</button>
+</a>
+
+</div>
+</section>
+
+<!-- CHAPTERS -->
+<section>
+<h2>📑 Chapters</h2>
+<ul>
+<li>Chapter 1: Introduction</li>
+<li>Chapter 2: Basics</li>
+<li>Chapter 3: Advanced Concepts</li>
+<li>Chapter 4: Practice Problems</li>
+</ul>
+</section>
+
+<!-- RECOMMENDATION -->
+<section>
+<h2>🔗 Recommended Books</h2>
+
+<button onclick="openSite('https://www.amazon.in')">View on Amazon</button>
+<button onclick="openSite('https://www.flipkart.com')">View on Flipkart</button>
+
+</section>
+
+<!-- IDE -->
+<section>
+<h2>💻 Practice Coding</h2>
+
+<iframe src="https://www.programiz.com/python-programming/online-compiler"
+width="100%" height="500px"></iframe>
+
+</section>
+
+<!-- CHATBOT -->
+<div id="chatbox">
+<div id="messages"></div>
+
+<input type="text" id="userInput" placeholder="Ask something...">
+<button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+
+/* CHATBOT */
+function sendMessage() {
+    let input = document.getElementById("userInput").value;
+    let msgBox = document.getElementById("messages");
+
+    msgBox.innerHTML += "<p><b>You:</b> " + input + "</p>";
+
+    let response = "I didn’t understand.";
+
+    if (input.toLowerCase().includes("book")) {
+        response = "Scroll up to see the book section 📘";
+    }
+    else if (input.toLowerCase().includes("buy")) {
+        response = "Click 'Get Full Book' and complete payment 💰";
+    }
+    else if (input.toLowerCase().includes("code")) {
+        response = "Use the coding IDE below 💻";
+    }
+
+    msgBox.innerHTML += "<p><b>Bot:</b> " + response + "</p>";
+}
+
+/* PAYMENT */
+function payNow() {
+    alert("Pay ₹50 via UPI: mnishanth8211-2@okhdfcbank OR GPay: 9025567423");
+
+    setTimeout(() => {
+        window.location.href = "fullbook.pdf";
+    }, 4000);
+}
+
+/* EXTERNAL LINKS */
+function openSite(url) {
+    window.open(url, "_blank");
+}
+
+</script>
+
+</body>
+</html>
